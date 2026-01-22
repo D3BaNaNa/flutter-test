@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
@@ -71,6 +72,24 @@ class _HomePageState extends State<HomePage> {
         );
       },
     );
+  }
+
+  void aperture_runner() {
+    String path = "./Aperture";
+    if (Platform.isWindows) {
+      path += ".exe";
+    } else if (Platform.isMacOS) {
+      path += ".app";
+    } else if (Platform.isLinux) {
+      // No extension for Linux
+    }
+    
+    if (File(path).existsSync()) {
+      // Note: Actual execution would require platform-specific code or plugins
+      print("Would execute: $path");
+    } else {
+      print("Aperture file not found at: $path");
+    }
   }
 
   @override
@@ -425,4 +444,3 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-}
